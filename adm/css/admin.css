@@ -1,0 +1,650 @@
+@charset "utf-8";
+
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px !important;
+}
+
+/* ==========================================================================
+   NAVIGATION & LAYOUT
+   ========================================================================== */
+
+/* Navbar */
+.navbar {
+    z-index: 99; /* Ensure navbar is above sidebar */
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #1B1B29;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+.sidebar .nav-link {
+    color: white;
+}
+
+.sidebar .nav-link.active {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.main-content.shifted {
+    margin-left: 250px;
+}
+
+/* ==========================================================================
+   STATISTICS CARDS
+   ========================================================================== */
+
+/* Base Stats Card */
+.stats-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.stats-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Color Themes */
+.stats-card.card-visits {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+}
+
+.stats-card.card-today {
+    --primary-color: #f093fb;
+    --secondary-color: #f5576c;
+}
+
+.stats-card.card-yesterday {
+    --primary-color: #4facfe;
+    --secondary-color: #00f2fe;
+}
+
+.stats-card.card-posts {
+    --primary-color: #43e97b;
+    --secondary-color: #38f9d7;
+}
+
+/* Card Content */
+.stats-card .card-body {
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.stats-card .card-icon {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 3rem;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.stats-card .card-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.stats-card .card-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.stats-card .card-subtitle {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+}
+
+/* Card Decorative Element */
+.stats-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.stats-card:hover::before {
+    transform: scale(1.2);
+}
+
+/* ==========================================================================
+   CHART CARDS
+   ========================================================================== */
+
+.chart-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.chart-card:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.chart-card .card-header {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 1.5rem 2rem;
+}
+
+.chart-card .card-header h5 {
+    color: #495057;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* ==========================================================================
+   TABLE CARDS
+   ========================================================================== */
+
+.table-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.table-card:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.table-card .card-header {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-bottom: none;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 1.5rem 2rem;
+}
+
+.table-card .card-header h5 {
+    color: #495057;
+    font-weight: 600;
+    margin: 0;
+}
+
+.table-card .table {
+    margin-bottom: 0;
+}
+
+.table-card .table thead th {
+    border-top: none;
+    border-bottom: 2px solid #e9ecef;
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.9rem;
+}
+
+.table-card .table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* Tablet and Mobile */
+@media (max-width: 768px) {
+    .main-content.shifted {
+        margin-left: 0;
+    }
+    
+    .stats-card .card-body {
+        padding: 1.5rem;
+    }
+    
+    .stats-card .card-number {
+        font-size: 2rem;
+    }
+    
+    .stats-card .card-icon {
+        font-size: 2.5rem;
+    }
+}
+
+.card-move {
+    transition: all 0.3s ease;
+}
+    
+.card-move:hover {
+	transform: translateY(-2px);
+}
+
+/*관리자 메뉴관리*/
+.menu-scroll{min-height:1000px; max-height:1000px; overflow-y:auto;}
+.nested-menu { margin-left: 0; }
+.sortable {padding-left: 1.0rem;}
+.sortable .btn {font-size:12px !important; padding:4px 8px;}
+.menu-item { 
+    border-bottom: 1px solid #e9ecef; 
+    padding: 10px 10px; 
+    font-size:14px; 
+    cursor: move; 
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    background: #fff;
+}
+.nested-menu-deep { margin-left: 0; }
+.menu-item:hover { 
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.sortable-ghost { 
+    opacity: 0.4; 
+    background: linear-gradient(135deg, #e9ecef, #dee2e6);
+    transform: rotate(3deg);
+}
+.menu-level-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.level-0 { background: #007bff; }
+.level-1 { background: #28a745; }
+.level-2 { background: #ffc107; }
+.level-3 { background: #dc3545; }
+.menu-status-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 12px;
+}
+
+/*관리자 내용관리 폼*/
+.CodeMirror {
+    height: 400px;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.CodeMirror-gutters {
+    border-right: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+}
+.CodeMirror-linenumber {
+    color: #6c757d;
+}
+
+/* ====================================
+   파일 업로드
+   ==================================== */
+.file-upload {
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: border-color 0.3s;
+    cursor: pointer;
+}
+
+.file-upload:hover {
+    border-color: #2563eb;
+    background: #f8faff;
+}
+
+.file-upload.dragover {
+    border-color: #2563eb;
+    background: #eff6ff;
+}
+
+.file-upload-icon {
+    font-size: 3rem;
+    color: #9ca3af;
+    margin-bottom: 1rem;
+}
+
+.file-upload-text {
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+}
+
+.file-upload-hint {
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
+
+.file-input {
+    display: none;
+}
+
+/* 업로드된 파일 목록 */
+.file-list {
+    margin-top: 1rem;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.file-name {
+    font-weight: 500;
+}
+
+.file-size {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.file-remove {
+    color: #ef4444;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.file-remove:hover {
+    background: #fee2e2;
+}
+
+/* 파일 미리보기 컨테이너 */
+#filePreview {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 16px;
+    padding: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 파일 미리보기 카드 스타일 */
+.preview-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: none;
+}
+
+.preview-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+/* 이미지 컨테이너 */
+.preview-image-container {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f8fafc;
+    margin-bottom: 8px;
+}
+
+.preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.preview-image:hover {
+    transform: scale(1.05);
+}
+
+/* 파일 아이콘 컨테이너 */
+.preview-icon-container {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.file-icon {
+    font-size: 32px;
+    color: #64748b;
+    transition: color 0.3s ease;
+}
+
+.preview-icon-container:hover .file-icon {
+    color: #3b82f6;
+}
+
+/* 삭제 버튼 */
+.delete-file-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background: rgba(239, 68, 68, 0.9);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+}
+
+.preview-card:hover .delete-file-btn {
+    opacity: 1;
+}
+
+.delete-file-btn:hover {
+    background: rgba(220, 38, 38, 1);
+    transform: scale(1.1);
+}
+
+.delete-icon {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* 파일 정보 영역 */
+.preview-info {
+    text-align: left;
+}
+
+.preview-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 4px 0;
+    word-break: break-word;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.preview-size {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* 파일 타입별 아이콘 색상 */
+.file-icon.fa-file-pdf {
+    color: #dc2626;
+}
+
+.file-icon.fa-file-word {
+    color: #2563eb;
+}
+
+.file-icon.fa-file-excel {
+    color: #16a34a;
+}
+
+.file-icon.fa-file-powerpoint {
+    color: #ea580c;
+}
+
+.file-icon.fa-file-archive {
+    color: #7c3aed;
+}
+
+.file-icon.fa-file-code {
+    color: #059669;
+}
+
+.file-icon.fa-file-text {
+    color: #4b5563;
+}
+
+.file-icon.fa-file {
+    color: #6b7280;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1200px) {
+    #filePreview {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 12px;
+    }
+}
+
+@media (max-width: 992px) {
+    #filePreview {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    #filePreview {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 12px;
+    }
+    
+    .preview-card {
+        padding: 10px;
+    }
+    
+    .preview-image-container,
+    .preview-icon-container {
+        height: 70px;
+        margin-bottom: 6px;
+    }
+    
+    .file-icon {
+        font-size: 24px;
+    }
+    
+    .preview-title {
+        font-size: 12px;
+        -webkit-line-clamp: 1;
+    }
+    
+    .preview-size {
+        font-size: 10px;
+    }
+    
+    .delete-file-btn {
+        width: 20px;
+        height: 20px;
+        top: 6px;
+        right: 6px;
+    }
+    
+    .delete-icon {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    #filePreview {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 8px;
+    }
+}
+
+.file-pdf { color: #dc3545; }
+.file-word { color: #007bff; }
+.file-excel { color: #28a745; }
+.file-ppt { color: #fd7e14; }
+.file-zip { color: #6f42c1; }
+.file-default { color: #6c757d; }

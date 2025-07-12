@@ -1,0 +1,60 @@
+# Dependency directories
+/vendor/
+/node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Log files
+*.log
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Cache and temporary files
+/cache/
+/tmp/
+/sessions/
+
+# Uploaded files
+/data/file/*
+!/data/file/index.html
+
+# Local configuration files
+/config/*.php
+!/config/config.php.example
+
+# Composer
+composer.lock
+composer.phar
+
+# Debug files
+debug.log
+
+# Local development files
+*.local.*
+
+# Ignore user uploads
+/uploads/
+
+# Ignore all .htaccess files except the root one
+.htaccess
+!.htaccess
+
+# Ignore all .user.ini files except the root one
+.user.ini
+!.user.ini
