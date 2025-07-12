@@ -1,5 +1,5 @@
 <?php
-if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
+if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가 
 ?>
 	
 		<div class="comments-section rounded bg-white mb-2 px-3 py-1 shadow-sm">
@@ -7,72 +7,30 @@ if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
 				댓글 <span style="color: #2563eb;"><?php echo $comment_count; ?></span>개
 			</div>
 			
-			<!-- 코멘트 입력 폼 { -->
-            <div id="cmtId" class="comment-form">
-                <form id="commentForm" action="comment_update.php" method="post">
-                    <input type="hidden" name="board_id" value="<?php echo $boardId;?>">
-                    <input type="hidden" name="board_num" value="<?php echo $boardNum;?>">
-                    <input type="hidden" name="action" value="write">
-                    <input type="hidden" name="comment_id" value="">
-                    <?php if ($is_member): ?>
-                        <input type="hidden" name="user_id" value="<?php echo $member['user_id'];?>">
-                        <input type="hidden" name="name" value="<?php echo htmlspecialchars($member['user_name']);?>">
-                        <input type="hidden" name="email" value="<?php echo htmlspecialchars($member['user_email']);?>">
-                        <input type="hidden" name="password" value="<?php echo $member['user_password'];?>">
-                    <?php else: ?>
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" name="name" placeholder="이름" required>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="email" class="form-control" name="email" placeholder="이메일" required>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="password" class="form-control" name="password" placeholder="비밀번호" required>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-                    <div class="mb-3">
-                        <textarea id="commentContent" name="content" class="form-control" rows="3" required></textarea>
-						
-						<div class="comment-actions">
-							<div class="comment-info text-center text-warning py-2">
-								<i class="bi bi-exclamation-triangle"></i> 욕설, 비방, 광고 등의 댓글은 삭제될 수 있습니다.
-							</div>
-							<div class="text-center">
-								<button type="submit" class="btn btn-primary">댓글 작성</button>
-							</div>
-						</div>
-                    </div>
-                </form>
-            </div>
-			<!-- } 코멘트 입력 폼 끝 -->
-			
-			
 			<!-- 코멘트 목록 { -->
-			<div class="comments-list  ">
+			<div class="comments-list">
 				
 					<!-- 코멘트 출력 { -->
 					<?php if (!empty($comments)): ?>
 						<?php foreach ($comments as $comment): ?>
 						<div class="comment-item rounded border mb-2 p-2" id="cmtId<?= $comment['comment_id'] ?>">
-
-							<div class="comment-header">
-								<span class="comment-author"><?= htmlspecialchars($comment['name']) ?></span>
-								<span class="comment-date"><?= date('Y-m-d H:i', strtotime($comment['reg_date'])) ?></span>
+							<div class="comment-meta-container">
+								<div class="comment-info">
+									<span class="comment-author"><?= htmlspecialchars($comment['name']) ?></span>
+									<span class="comment-date"><?= date('Y-m-d H:i', strtotime($comment['reg_date'])) ?></span>
+								</div>
+								<?php if ($is_member && ($member['user_id'] == $comment['user_id'] || $is_admin)): ?>
+									<div class="comment-actions">
+										<button type="button" class="comment-action-btn edit-comment" 
+												data-comment-id="<?= $comment['comment_id'] ?>">수정</button>
+										<button type="button" class="comment-action-btn delete-comment" 
+												data-comment-id="<?= $comment['comment_id'] ?>">삭제</button>
+									</div>
+								<?php endif; ?>
 							</div>
 							<div class="comment-content" id="comment-content-<?= $comment['comment_id'] ?>">
-								<?= $comment['content'] ?>
+								<?php echo $comment['content']; ?>
 							</div>
-								<?php if ($is_member && ($member['user_id'] == $comment['user_id'] || $is_admin)): ?>
-								<div class="comment-actions-small text-end">
-									<button type="button" class="comment-action edit-comment" 
-											data-comment-id="<?= $comment['comment_id'] ?>">수정</button>
-									<button type="button" class="comment-action delete-comment" 
-											data-comment-id="<?= $comment['comment_id'] ?>">삭제</button>
-								</div>
-								<?php endif; ?>
-							
 						</div>
 						<?php endforeach; ?>
 						<!-- } 코멘트 출력 끝 -->
@@ -111,5 +69,46 @@ if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
 					<!-- } 페이지네이션 끝-->
 			</div>
 			<!-- } 코멘트 목록 끝-->
+			
+			<!-- 코멘트 입력 폼 { -->
+            <div id="cmt" class="comment-form">
+                <form id="commentForm" action="<?php echo CM_BOARD_URL?>/comment_update.php" method="post">
+                    <input type="hidden" name="board_id" value="<?php echo $boardId;?>">
+                    <input type="hidden" name="board_num" value="<?php echo $boardNum;?>">
+                    <input type="hidden" name="act" value="write">
+                    <input type="hidden" name="comment_id" value="">
+                    <?php if ($is_member): ?>
+                        <input type="hidden" name="user_id" value="<?php echo $member['user_id'];?>">
+                        <input type="hidden" name="name" value="<?php echo htmlspecialchars($member['user_name']);?>">
+                        <input type="hidden" name="email" value="<?php echo htmlspecialchars($member['user_email']);?>">
+                        <input type="hidden" name="password" value="<?php echo $member['user_password'];?>">
+                    <?php else: ?>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" name="name" placeholder="이름" required>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="email" class="form-control" name="email" placeholder="이메일" required>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="password" class="form-control" name="password" placeholder="비밀번호" required>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                    <div class="mb-3">
+                        <div id="editor" style="height: 100px;"></div>
+						<input type="hidden" name="content" id="content">
+						<div class="comment-actions">
+							<div class="comment-info text-center text-warning py-2">
+								<i class="bi bi-exclamation-triangle"></i> 욕설, 비방, 광고 등의 댓글은 삭제될 수 있습니다.
+							</div>
+							<div class="text-center">
+								<button type="submit" class="btn btn-primary">댓글 작성</button>
+							</div>
+						</div>
+                    </div>
+                </form>
+            </div>
+			<!-- } 코멘트 입력 폼 끝 -->
 		</div>
 

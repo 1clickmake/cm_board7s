@@ -13,5 +13,5 @@ function confirmDeleteSelected() {
         alert('삭제할 게시물을 선택하세요.');
         return false;
     }
-    return confirm(checkedCount + '개 게시물 삭제?\n삭제된 데이터는 복구 불가.');
+    return confirm(checkedCount + '개의 게시물을 삭제하시겠습니까?\n삭제된 데이터는 복구 불가합니다.');
 }

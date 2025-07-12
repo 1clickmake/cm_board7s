@@ -79,7 +79,7 @@ if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
         <!-- 태그 -->
         <div class="mb-3 tag-input-wrapper">
             <label for="tags" class="form-label">태그</label>
-            <div id="tagList" class="mb-2"></div>
+            <div id="tagList" ></div>
             <input type="text" class="form-control" id="tags" name="tags" 
                    value="<?php echo htmlspecialchars($write['tags'] ?? ''); ?>" autocomplete="off">
         </div>

@@ -880,7 +880,7 @@ a:hover{
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    min-height: 28px;
+    height: auto;
 }
 
 .tag-badge {
@@ -895,6 +895,8 @@ a:hover{
     font-weight: 500;
     border: 1px solid #e5e7eb;
     transition: background 0.2s;
+	display:inline-block;
+	margin-bottom:15px;
 }
 
 .tag-badge:hover {

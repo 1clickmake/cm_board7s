@@ -728,3 +728,116 @@
         padding: 1.5rem 1rem;
     }
 }
+
+/* ====================================
+   댓글 (Comments)
+   ==================================== */
+.comment-meta-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.comment-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: #374151;
+}
+
+.comment-date {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.comment-actions {
+    /* display: flex;
+    gap: 8px; */
+}
+
+
+.comment-action-btn {
+    padding: 4px 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #4b5563;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.comment-action-btn:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.comment-action-btn.edit-comment:hover {
+    color: #2563eb;
+    border-color: #bfdbfe;
+    background-color: #eff6ff;
+}
+
+.comment-action-btn.delete-comment:hover {
+    color: #dc2626;
+    border-color: #fecaca;
+    background-color: #fee2e2;
+}
+
+/* ====================================
+   태그 입력(Tag Input)
+   ==================================== */
+.tag-input-wrapper {
+    min-height: 40px;
+}
+
+#tagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    height: auto;
+}
+
+.tag-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #f3f4f6;
+    color: #374151;
+    border-radius: 16px;
+    padding: 4px 12px 4px 10px;
+    font-size: 0.95em;
+    margin-bottom: 2px;
+    font-weight: 500;
+    border: 1px solid #e5e7eb;
+    transition: background 0.2s;
+	display:inline-block;
+	margin-bottom:15px;
+}
+
+.tag-badge:hover {
+    background: #e0e7ef;
+}
+
+.tag-remove-btn {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 1em;
+    margin-left: 6px;
+    cursor: pointer;
+    padding: 0 2px;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+    line-height: 1;
+}
+
+.tag-remove-btn:hover {
+    background: #fee2e2;
+    color: #dc2626;
+}

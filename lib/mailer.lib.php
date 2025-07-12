@@ -19,13 +19,7 @@ function send_bulk_email($recipients, $subject, $body, $attachments = [], $cc_li
     $fail_count = 0;
     $error_messages = [];
     
-    // 첨부파일 정보 로그
-    error_log("send_bulk_email 호출 - 수신자: " . count($recipients) . "명, 첨부파일: " . count($attachments) . "개");
-    if (!empty($attachments)) {
-        foreach ($attachments as $attachment) {
-            error_log("첨부파일 정보: " . json_encode($attachment));
-        }
-    }
+    // 로그 제거됨
     
     foreach ($recipients as $recipient) {
         $result = send_gmail(

@@ -76,7 +76,14 @@ if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
             <input type="text" class="form-control" id="title" name="title" 
                    value="<?php echo htmlspecialchars($write['title'] ?? ''); ?>" required>
         </div>
-        
+        <!-- 태그 -->
+        <div class="mb-3 tag-input-wrapper">
+            <label for="tags" class="form-label">태그</label>
+            <div id="tagList" class="mb-2"></div>
+            <input type="text" class="form-control" id="tags" name="tags" 
+                   value="<?php echo htmlspecialchars($write['tags'] ?? ''); ?>" autocomplete="off">
+        </div>
+
         <!-- 내용 -->
         <div class="mb-3">
             <label for="content" class="form-label">내용</label>
@@ -190,4 +197,4 @@ if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
             <a href="<?php echo get_board_url('list', $boardId);?>" class="btn btn-secondary px-4">취소</a>
         </div>
     </form>
-</div>
+</div> 

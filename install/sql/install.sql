@@ -361,7 +361,8 @@ INSERT INTO `cm_menu` (`menu_id`, `parent_id`, `menu_name`, `menu_url`, `menu_ic
 (6, 0, 'menu1', '', '<i class=\"bi bi-bank\"></i>', 1, 0, 1, 1, NOW(), NOW()),
 (20, 18, 'menu2-1-1', '', '', 0, 0, 3, 1, NOW(), NOW()),
 (21, 18, 'menu2-1-2', '', '', 0, 0, 3, 2, NOW(), NOW()),
-(22, 0, 'notice', '', '', 0, 0, 1, 1, NOW(), NOW());
+(22, 0, 'notice', './board/list.php?board=notice', '', 0, 0, 1, 1, NOW(), NOW());
+(23, 0, 'gallery', './board/list.php?board=gallery', '', 0, 0, 1, 1, NOW(), NOW());
 
 --
 -- 테이블의 덤프 데이터 `cm_users`

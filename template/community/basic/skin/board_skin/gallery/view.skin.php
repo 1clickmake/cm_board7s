@@ -34,6 +34,18 @@ if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
             <span><i class="bi bi-eye me-1"></i> <?php echo number_format($view['view_count'] ?? 0); ?></span>
             <span><i class="bi bi-chat-dots me-1"></i> <?php echo number_format($comment_count ?? 0); ?></span>
         </div>
+
+        <?php if (!empty($view['tags'])): ?>
+            <div class="mb-2">
+                <div>
+                    <?php foreach (explode(',', $view['tags']) as $tag): ?>
+                        <?php $tag = trim($tag); if ($tag): ?>
+                            <span class="tag-badge"><?= htmlspecialchars($tag) ?></span>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
 
     <!-- 게시글 내용 -->
@@ -136,14 +148,8 @@ if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
     </div>
 
     <!-- 댓글 영역 -->
-    <?php if(isset($view['comment_chk']) && $view['comment_chk'] == 1): ?>
-        <div class="card mb-4">
-            <div class="card-header bg-light">
-                <h5 class="mb-0"><i class="bi bi-chat-square-text me-2"></i>댓글</h5>
-            </div>
-            <div class="card-body">
-                <?php include_once('comment.skin.php'); ?>
-            </div>
-        </div>
-    <?php endif; ?>
+    <?php 
+	if(isset($view['comment_chk']) && $view['comment_chk'] == 1){
+        include_once('comment.skin.php');
+	} ?>
 </div>

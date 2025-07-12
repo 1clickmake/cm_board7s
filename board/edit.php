@@ -59,7 +59,8 @@ $formAction = CM_BOARD_URL."/edit_update.php";
 include_once CM_TEMPLATE_PATH.'/skin/board_skin/'.$bo['board_skin'].'/write.skin.php';
 
 echo '<script>
-const recaptchaSiteKey	= ' . json_encode($recaptcha_site) . ';
+var recaptcha_site = ' . json_encode($recaptcha_site) . ';
+var recaptcha_secret = ' . json_encode($recaptcha_secret) . ';
 </script>';
 echo '<script src="' . CM_URL . '/js/board.write.js?ver=' . time() . '"></script>';
 

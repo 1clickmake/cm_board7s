@@ -23,6 +23,7 @@ if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
 							<option value="content" <?php echo ($_GET['search_field'] ?? '') === 'content' ? 'selected' : '';?>>내용</option>
 							<option value="name" <?php echo ($_GET['search_field'] ?? '') === 'name' ? 'selected' : '';?>>작성자</option>
 							<option value="title_content" <?php echo ($_GET['search_field'] ?? '') === 'title_content' ? 'selected' : '';?>>제목+내용</option>
+							<option value="tags" <?php echo ($_GET['search_field'] ?? '') === 'tags' ? 'selected' : '';?>>태그</option>
 						</select>
 						<input type="text" name="search_keyword" class="search-input-small" value="<?php echo htmlspecialchars($_GET['search_keyword'] ?? '');?>" placeholder="검색어를 입력하세요">
 						<button type="submit" class="btn btn-dark btn-outline">검색</button>

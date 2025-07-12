@@ -26,9 +26,7 @@ function send_gmail($to_name, $to_email, $subject, $body,  $alt_body = '', $atta
     $gmail_password = $config['google_appkey']; // Gmail 앱 비밀번호 (보안을 위해 앱 비밀번호 사용)
     $sender_name = $config['site_title']; // 발신자 이름
     
-    // 설정 정보 로그 (비밀번호는 마스킹)
-    error_log("Gmail 설정 확인 - 계정: " . $gmail_account . ", 발신자명: " . $sender_name);
-    error_log("Gmail 앱키 설정 여부: " . (!empty($gmail_password) ? '설정됨' : '설정되지 않음'));
+    // 설정 정보 로그 제거됨
     
     // PHPMailer 객체 생성
     $mail = new PHPMailer\PHPMailer\PHPMailer(true);
@@ -45,7 +43,7 @@ function send_gmail($to_name, $to_email, $subject, $body,  $alt_body = '', $atta
         $mail->Port = 587; // SMTP 포트
         $mail->CharSet = 'UTF-8'; // 문자셋 설정
         
-        error_log("SMTP 설정 완료 - 호스트: smtp.gmail.com, 포트: 587, 사용자: " . $gmail_account);
+        // SMTP 설정 로그 제거됨
         
         // 메모리 제한 증가 (대용량 파일 처리용)
         ini_set('memory_limit', '256M');
@@ -79,33 +77,21 @@ function send_gmail($to_name, $to_email, $subject, $body,  $alt_body = '', $atta
         
         // 첨부 파일 추가
         if (!empty($attachments)) {
-            error_log("첨부파일 처리 시작: " . count($attachments) . "개 파일");
             foreach ($attachments as $attachment) {
-                error_log("첨부파일 확인: " . $attachment['path'] . " (이름: " . ($attachment['name'] ?? '') . ")");
-                
                 // 파일이 실제로 존재하는지 확인
                 if (file_exists($attachment['path'])) {
                     // 파일 크기 확인 (10MB 제한)
                     $file_size = filesize($attachment['path']);
-                    error_log("파일 크기: " . $file_size . " bytes");
                     
                     if ($file_size <= 10 * 1024 * 1024) { // 10MB 이하만 첨부
                         try {
                             $mail->addAttachment($attachment['path'], $attachment['name'] ?? '');
-                            error_log("첨부파일 추가 성공: " . ($attachment['name'] ?? ''));
                         } catch (Exception $e) {
-                            // 첨부파일 추가 실패 시 로그 기록
-                            error_log("첨부파일 추가 실패: " . ($attachment['name'] ?? '') . " - " . $e->getMessage());
+                            // 첨부파일 추가 실패 시 조용히 처리
                         }
-                    } else {
-                        error_log("파일 크기 초과로 첨부 제외: " . ($attachment['name'] ?? ''));
                     }
-                } else {
-                    error_log("파일이 존재하지 않음: " . $attachment['path']);
                 }
             }
-        } else {
-            error_log("첨부파일 없음");
         }
         
         // 메일 내용 설정
@@ -117,7 +103,7 @@ function send_gmail($to_name, $to_email, $subject, $body,  $alt_body = '', $atta
         // 메일 발송
         $mail->send();
         
-        error_log("이메일 발송 성공: " . $to_email);
+        // 이메일 발송 성공 로그 제거됨
         
         return [
             'success' => true,
@@ -125,8 +111,7 @@ function send_gmail($to_name, $to_email, $subject, $body,  $alt_body = '', $atta
         ];
         
     } catch (Exception $e) {
-        error_log("이메일 발송 실패 - 수신자: " . $to_email . ", 오류: " . $e->getMessage());
-        error_log("PHPMailer 오류 정보: " . $mail->ErrorInfo);
+        // 이메일 발송 실패 로그 제거됨
         
         return [
             'success' => false,
