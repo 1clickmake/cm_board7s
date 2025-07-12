@@ -1,5 +1,5 @@
 <?php
-if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가 
+if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
 
 // 아코디언 메뉴 생성 함수 (재귀적)
 function generateAccordionMenu($parent_id = 0, $level = 1, $max_depth = 3) {
@@ -161,25 +161,23 @@ function generateMegaMenu($parent_id = 0, $level = 1, $max_depth = 3) {
         } else {
             // 2차 이상 메뉴
             if ($sub_count > 0) {
-                // 서브메뉴가 있는 경우
+                // 모든 뎁스에서 드롭다운 지원
                 echo '<li class="dropend">';
-                echo '<a class="dropdown-item dropdown-toggle" href="' . $menu_url . '" id="navbarDropdown' . $menu_id . '" role="button" data-bs-toggle="dropdown" aria-expanded="false"' . $target . '>';
+                echo '<a class="dropdown-item dropdown-toggle" href="' . $menu_url . '" id="navbarDropdown' . $menu_id . '" role="button" data-bs-toggle="dropdown" aria-expanded="false"' . $target . '">';
                 if (!empty($row['menu_icon'])) {
                     echo $row['menu_icon'] . ' ';
                 }
                 echo $menu_name;
                 echo '</a>';
                 echo '<ul class="dropdown-menu" aria-labelledby="navbarDropdown' . $menu_id . '">';
-                
                 // 서브메뉴 재귀 호출
                 generateMegaMenu($menu_id, $level + 1, $max_depth);
-                
                 echo '</ul>';
                 echo '</li>';
             } else {
                 // 서브메뉴가 없는 경우
                 echo '<li>';
-                echo '<a class="dropdown-item" href="' . $menu_url . '"' . $target . '>';
+                echo '<a class="dropdown-item" href="' . $menu_url . '"' . $target . '">';
                 if (!empty($row['menu_icon'])) {
                     echo $row['menu_icon'] . ' ';
                 }

@@ -1,0 +1,281 @@
+/**
+ * 메뉴 관련 CSS
+ * 3뎁스 이상 드롭다운 메뉴 지원
+ */
+
+/* ============================================
+   중첩 드롭다운 메뉴 스타일
+   ============================================ */
+
+/* 3뎁스 이상 드롭다운 메뉴 기본 스타일 */
+.dropdown-menu .dropdown-menu {
+    position: absolute !important;
+    top: 0 !important;
+    left: 100% !important;
+    margin-left: 2px !important;
+    margin-top: -8px !important;
+    min-width: 200px;
+    z-index: 1001;
+    display: none;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0.375rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #ffffff !important;
+    animation: dropdownFadeIn 0.2s ease-in-out;
+}
+
+/* 드롭다운 페이드인 애니메이션 */
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 중첩 드롭다운이 표시될 때 */
+.dropdown-menu .dropdown-menu.show {
+    display: block !important;
+}
+
+/* 화면 오른쪽 끝에 닿을 경우 왼쪽으로 표시 */
+.dropdown-menu .dropdown-menu.dropdown-menu-start {
+    left: auto !important;
+    right: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 2px !important;
+}
+
+/* 화면 아래쪽에 닿을 경우 위로 표시 */
+.dropdown-menu .dropdown-menu.dropdown-menu-top {
+    top: auto !important;
+    bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: -8px !important;
+}
+
+/* 중첩 드롭다운 내부 아이템 스타일 */
+.dropdown-menu .dropdown-menu .dropdown-item {
+    padding: 8px 16px;
+    color: #000000 !important;
+    background-color: transparent;
+    border: 0;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu .dropdown-menu .dropdown-item:hover {
+    color: #000000 !important;
+    background-color: #f8f9fa !important;
+    transform: translateX(2px);
+}
+
+/* 중첩 드롭다운 구분선 */
+.dropdown-menu .dropdown-menu .dropdown-divider {
+    height: 0;
+    margin: 4px 0;
+    overflow: hidden;
+    border-top: 1px solid rgba(0,0,0,.15);
+}
+
+/* 중첩 드롭다운 헤더 */
+.dropdown-menu .dropdown-menu .dropdown-header {
+    display: block;
+    padding: 8px 16px;
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    color: #6c757d;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+/* ============================================
+   호버 효과 및 전환
+   ============================================ */
+
+/* 드롭다운 토글 버튼 호버 효과 */
+.dropdown-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 중첩 드롭다운 부모 아이템 호버 효과 */
+.dropend:hover > .dropdown-toggle {
+    background-color: #e9ecef;
+    color: #1e2125;
+}
+
+/* 드롭다운 메뉴 호버 시 부모 아이템 강조 */
+.dropdown-menu:hover {
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   반응형 디자인
+   ============================================ */
+
+/* 모바일에서 중첩 드롭다운 처리 */
+@media (max-width: 768px) {
+    /* 모바일에서는 중첩 드롭다운을 세로로 표시 */
+    .dropdown-menu .dropdown-menu {
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 0 !important;
+        min-width: 100%;
+        box-shadow: none;
+        border: none;
+        border-left: 2px solid #dee2e6;
+        border-radius: 0;
+        background-color: #ffffff !important;
+        animation: none;
+    }
+    
+    /* 모바일에서 중첩 드롭다운 아이템 */
+    .dropdown-menu .dropdown-menu .dropdown-item {
+        padding: 8px 16px 8px 32px;
+        font-size: 0.85rem;
+        color: #000000 !important;
+    }
+    
+    .dropdown-menu .dropdown-menu .dropdown-item:hover {
+        background-color: #f8f9fa !important;
+        transform: none;
+    }
+    
+    /* 모바일에서 중첩 드롭다운 헤더 */
+    .dropdown-menu .dropdown-menu .dropdown-header {
+        padding: 8px 16px 8px 32px;
+        font-size: 0.8rem;
+        color: #495057;
+        font-weight: 600;
+    }
+    
+    /* 모바일에서 중첩 드롭다운 구분선 */
+    .dropdown-menu .dropdown-menu .dropdown-divider {
+        margin: 4px 16px;
+        border-color: #dee2e6;
+    }
+}
+
+/* 태블릿에서 중간 크기 조정 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .dropdown-menu .dropdown-menu {
+        min-width: 180px;
+    }
+    
+    .dropdown-menu .dropdown-menu .dropdown-item {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================
+   접근성 및 사용성 개선
+   ============================================ */
+
+/* 포커스 상태 스타일 */
+.dropdown-toggle:focus,
+.dropdown-item:focus {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+/* 키보드 네비게이션 지원 */
+.dropdown-menu:focus-within {
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+/* 스크린 리더 지원 */
+.dropdown-toggle[aria-expanded="true"] {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   특수 효과
+   ============================================ */
+
+/* 드롭다운 화살표 표시 */
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+
+/* 중첩 드롭다운 화살표 (우측) */
+.dropend .dropdown-toggle::after {
+    border-top: 0.3em solid transparent;
+    border-right: 0;
+    border-bottom: 0.3em solid transparent;
+    border-left: 0.3em solid;
+    margin-left: 0.255em;
+    margin-right: 0;
+}
+
+/* 드롭다운이 열려있을 때 화살표 회전 */
+.dropdown-toggle[aria-expanded="true"]::after {
+    transform: rotate(180deg);
+}
+
+.dropend .dropdown-toggle[aria-expanded="true"]::after {
+    transform: rotate(90deg);
+}
+
+/* ============================================
+   다크 모드 지원
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+    .dropdown-menu .dropdown-menu {
+        background-color: #2d3748;
+        border-color: #4a5568;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+    }
+    
+    .dropdown-menu .dropdown-menu .dropdown-item {
+        color: #e2e8f0;
+    }
+    
+    .dropdown-menu .dropdown-menu .dropdown-item:hover {
+        color: #f7fafc;
+        background-color: #4a5568;
+    }
+    
+    .dropdown-menu .dropdown-menu .dropdown-header {
+        color: #a0aec0;
+    }
+    
+    .dropdown-menu .dropdown-menu .dropdown-divider {
+        border-color: #4a5568;
+    }
+}
+
+/* ============================================
+   고대비 모드 지원
+   ============================================ */
+
+@media (prefers-contrast: high) {
+    .dropdown-menu .dropdown-menu {
+        border-width: 2px;
+        border-color: #000;
+    }
+    
+    .dropdown-menu .dropdown-menu .dropdown-item {
+        border-bottom: 1px solid #ccc;
+    }
+    
+    .dropdown-menu .dropdown-menu .dropdown-item:hover {
+        background-color: #000;
+        color: #fff;
+    }
+} 

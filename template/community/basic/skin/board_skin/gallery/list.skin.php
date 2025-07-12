@@ -1,5 +1,5 @@
 <?php
-if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
+if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가 
 ?>
 
 <script src="<?php echo CM_URL?>/js/board.list.js?ver=<?php echo time();?>"></script>
@@ -50,22 +50,48 @@ if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
                         <?php 
 						foreach ($rows as $index => $list) {
 							$images = get_image_post('cm_board', 'board_num', $list['board_num'], $list['content'], $boardId);
+							// 태그 파싱
+							$tags = [];
+							if (!empty($list['tags'])) {
+								$tags = array_filter(array_map('trim', explode(',', $list['tags'])));
+							}
 						?>
                         <div class="col-6 col-md-3 mb-3">
-							<div class="card w-100 h-100">
-								<a href="<?php echo get_board_url('view', $boardId, $list['board_num']);?>">
-								<img src="<?php echo $images;?>" class="card-img-top w-100" alt="<?php echo htmlspecialchars($list['title']); ?>">
-								</a>
-								<div class="card-body">
-									<p class="card-text">
-										<?php if($is_admin){?><span><input type="checkbox" name="selected_posts[]" value="<?php echo $list['board_num']; ?>"></span><?php } ?>
-										<a href="<?php echo get_board_url('view', $boardId, $list['board_num']);?>" class="text-decoration-none">
-											<?php echo htmlspecialchars($list['title']); ?>
-										</a>
-									</p>
+							<div class="card gallery-card w-100 h-100">
+								<div class="gallery-image-container">
+									<a href="<?php echo get_board_url('view', $boardId, $list['board_num']);?>">
+										<img src="<?php echo $images ? $images : CM_URL . '/images/no-image.png';?>" class="gallery-image" alt="<?php echo htmlspecialchars($list['title']); ?>">
+									</a>
+								</div>
+								<div class="card-body d-flex flex-column">
+									<div class="gallery-title-section">
+										<?php if($is_admin): ?>
+											<div class="admin-checkbox">
+												<input type="checkbox" name="selected_posts[]" value="<?php echo $list['board_num']; ?>">
+											</div>
+										<?php endif; ?>
+										<h6 class="gallery-title">
+											<a href="<?php echo get_board_url('view', $boardId, $list['board_num']);?>" class="text-decoration-none">
+												<?php echo htmlspecialchars($list['title']); ?>
+											</a>
+										</h6>
+									</div>
+									
+									<?php if (!empty($tags)): ?>
+									<div class="gallery-tags">
+										<?php foreach ($tags as $tag): ?>
+											<a href="<?php echo get_board_url('list', $boardId);?>&search_field=tags&search_keyword=<?php echo urlencode(trim($tag));?>" class="gallery-tag-link">
+												<span class="gallery-tag"><?php echo htmlspecialchars($tag); ?></span>
+											</a>
+										<?php endforeach; ?>
+									</div>
+									<?php endif; ?>
 								</div>
 								<div class="card-footer bg-white">
-									<div class="text-end"><?php echo htmlspecialchars($list['name']) ?> <?php echo date('Y-m-d', strtotime($list['reg_date'])) ?></div>
+									<div class="gallery-meta">
+										<span class="gallery-author"><?php echo htmlspecialchars($list['name']); ?></span>
+										<span class="gallery-date"><?php echo date('Y-m-d', strtotime($list['reg_date'])); ?></span>
+									</div>
 								</div>
 							</div>
                         </div>

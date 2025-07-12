@@ -341,8 +341,8 @@ CREATE TABLE IF NOT EXISTS `cm_email_log` (
 --
 
 INSERT INTO `cm_board_list` (`board_id`, `board_name`, `group_id`, `group_name`, `board_skin`, `board_category`, `write_lv`, `list_lv`, `view_lv`, `created_at`) VALUES
-('gallery', 'gallery', 'community', '커뮤니티', 'gallery', '', 2, 2, 2, NOW()),
-('notice', '공지사항', 'community', '커뮤니티', 'basic', '', 2, 2, 2, NOW());
+('gallery', 'gallery', 'community', '커뮤니티', 'gallery', '', 1, 1, 1, NOW()),
+('notice', '공지사항', 'community', '커뮤니티', 'basic', '', 1, 1, 1, NOW());
 
 
 
@@ -358,11 +358,12 @@ INSERT INTO `cm_board_group` (`group_id`, `group_name`, `created_at`) VALUES
 --
 
 INSERT INTO `cm_menu` (`menu_id`, `parent_id`, `menu_name`, `menu_url`, `menu_icon`, `target_blank`, `is_disabled`, `menu_level`, `sort_order`, `created_at`, `updated_at`) VALUES
-(6, 0, 'menu1', '', '<i class=\"bi bi-bank\"></i>', 1, 0, 1, 1, NOW(), NOW()),
-(20, 18, 'menu2-1-1', '', '', 0, 0, 3, 1, NOW(), NOW()),
-(21, 18, 'menu2-1-2', '', '', 0, 0, 3, 2, NOW(), NOW()),
-(22, 0, 'notice', './board/list.php?board=notice', '', 0, 0, 1, 1, NOW(), NOW());
-(23, 0, 'gallery', './board/list.php?board=gallery', '', 0, 0, 1, 1, NOW(), NOW());
+(1, 0, 'menu1', '#', '<i class=\"bi bi-bank\"></i>', 0, 0, 1, 1, NOW(), NOW()),
+(2, 1, 'menu1-1', '#', '', 0, 0, 2, 1, NOW(), NOW()),
+(3, 1, 'menu1-2', '#', '', 0, 0, 2, 2, NOW(), NOW()),
+(4, 3, 'menu1-2-1', '#', '', 0, 0, 3, 1, NOW(), NOW()),
+(5, 0, 'Notice', '../board/list.php?board=notice', '', 0, 0, 1, 2, NOW(), NOW()),
+(6, 0, 'Gallery', '../board/list.php?board=gallery', '', 0, 0, 1, 3, NOW(), NOW());
 
 --
 -- 테이블의 덤프 데이터 `cm_users`

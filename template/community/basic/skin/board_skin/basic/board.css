@@ -903,6 +903,23 @@ a:hover{
     background: #e0e7ef;
 }
 
+.tag-badge-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.tag-badge-link:hover {
+    text-decoration: none;
+}
+
+.tag-badge-link:hover .tag-badge {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
 .tag-remove-btn {
     background: none;
     border: none;

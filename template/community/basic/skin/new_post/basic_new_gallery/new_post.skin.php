@@ -17,13 +17,16 @@ $content =  mb_substr($content_stripped, 0, 60); // 0번째부터 60글자까지
         <div class="card-body p-md-3">
 			<a href="<?php echo get_board_url('view', $list['board_id'], $list['board_num']);?>">
             <?php if (!empty($images) && is_array($images)): ?>
-                <img alt="<?php echo htmlspecialchars($list['title']); ?>" 
-                     class="img-fluid" 
-                     src="<?php echo $images[0]['file']; ?>">
+                <div class="new-post-image-container">
+                    <img alt="<?php echo htmlspecialchars($list['title']); ?>" 
+                         class="new-post-image" 
+                         src="<?php echo $images[0]['file']; ?>">
+                </div>
             <?php else: ?>
-                <div class="bg-light d-flex align-items-center justify-content-center" 
-                     style="width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 1rem;">
-                    <i class="bi bi-image" style="font-size: 2rem; color: #ccc;"></i>
+                <div class="new-post-image-container">
+                    <div class="new-post-placeholder">
+                        <i class="bi bi-image"></i>
+                    </div>
                 </div>
             <?php endif; ?>
 			</a> 

@@ -42,6 +42,185 @@
 }
 
 /* ====================================
+   갤러리 카드 스타일
+   ==================================== */
+.gallery-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.gallery-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 갤러리 이미지 컨테이너 */
+.gallery-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px; /* 고정 높이 */
+    overflow: hidden;
+    background: #f8fafc;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.gallery-card:hover .gallery-image {
+    transform: scale(1.05);
+}
+
+/* 갤러리 카드 본문 */
+.gallery-card .card-body {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 갤러리 제목 섹션 */
+.gallery-title-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.admin-checkbox {
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.gallery-title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #1f2937;
+    flex: 1;
+}
+
+.gallery-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.gallery-title a:hover {
+    color: #2563eb;
+}
+
+/* 갤러리 태그 */
+.gallery-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: auto;
+}
+
+.gallery-tag-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.gallery-tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: #f3f4f6;
+    color: #374151;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.gallery-tag-link:hover .gallery-tag {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+/* 갤러리 메타 정보 */
+.gallery-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.gallery-author {
+    font-weight: 500;
+    color: #374151;
+}
+
+.gallery-date {
+    color: #9ca3af;
+}
+
+/* 갤러리 카드 푸터 */
+.gallery-card .card-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #f3f4f6;
+    background: #fafafa;
+}
+
+/* ====================================
+   반응형 갤러리 디자인
+   ==================================== */
+@media (max-width: 768px) {
+    .gallery-image-container {
+        height: 160px; /* 모바일에서 조금 작게 */
+    }
+    
+    .gallery-title {
+        font-size: 0.9rem;
+    }
+    
+    .gallery-tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+    
+    .gallery-meta {
+        font-size: 0.75rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-image-container {
+        height: 140px;
+    }
+    
+    .gallery-title {
+        font-size: 0.85rem;
+    }
+    
+    .gallery-tags {
+        gap: 0.2rem;
+    }
+    
+    .gallery-tag {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.35rem;
+    }
+}
+
+/* ====================================
    게시판 테이블
    ==================================== */
 .board-table {
@@ -822,6 +1001,23 @@
 
 .tag-badge:hover {
     background: #e0e7ef;
+}
+
+.tag-badge-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.tag-badge-link:hover {
+    text-decoration: none;
+}
+
+.tag-badge-link:hover .tag-badge {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
 }
 
 .tag-remove-btn {

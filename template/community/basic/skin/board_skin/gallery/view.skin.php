@@ -40,7 +40,9 @@ if (!defined('_CMBOARD_')) exit; // 개별 페이지 접근 불가
                 <div>
                     <?php foreach (explode(',', $view['tags']) as $tag): ?>
                         <?php $tag = trim($tag); if ($tag): ?>
-                            <span class="tag-badge"><?= htmlspecialchars($tag) ?></span>
+                            <a href="<?php echo get_board_url('list', $boardId);?>&search_field=tags&search_keyword=<?php echo urlencode($tag);?>" class="tag-badge-link">
+                                <span class="tag-badge"><?= htmlspecialchars($tag) ?></span>
+                            </a>
                         <?php endif; ?>
                     <?php endforeach; ?>
                 </div>
