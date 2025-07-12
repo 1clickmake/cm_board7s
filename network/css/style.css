@@ -1,0 +1,124 @@
+.network-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.network-tree {
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.network-level {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 10px 0;
+    padding: 5px;
+    background: #fff;
+    border-radius: 4px;
+    position: relative;
+    transform: scale(0.5);
+    transform-origin: top center;
+}
+
+.members-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    position: relative;
+}
+
+.member-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.member-group::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 2px;
+    height: 10px;
+    background: #dee2e6;
+}
+
+.member-node {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    min-width: 120px;
+}
+
+.member-node:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.member-info {
+    text-align: center;
+}
+
+.member-name {
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #212529;
+    font-size: 0.9em;
+}
+
+.member-details {
+    font-size: 0.8em;
+    color: #6c757d;
+    margin: 2px 0;
+}
+
+.recommender-line {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7em;
+    color: #6c757d;
+    white-space: nowrap;
+    background: #fff;
+    padding: 0 5px;
+}
+
+.loading {
+    text-align: center;
+    padding: 10px;
+    color: #6c757d;
+    font-size: 0.8em;
+}
+
+/* 피라미드 구조를 위한 반응형 스타일 */
+@media (max-width: 768px) {
+    .network-level {
+        flex-wrap: wrap;
+    }
+    
+    .member-node {
+        min-width: 100px;
+        margin: 3px;
+        padding: 5px;
+    }
+    
+    .member-details {
+        font-size: 0.7em;
+    }
+} 

@@ -1,0 +1,310 @@
+/* ============================================
+   기본 템플릿 스타일
+   ============================================ */
+@charset "utf-8";
+
+/* 기본 바디 스타일 */
+body {
+    padding-top: 56px; /* 네비게이션 바 높이만큼 상단 여백 추가 */
+    min-height: 100vh;
+    position: relative;
+    background-color: #fff;
+}
+
+/* 기본 링크 스타일 */
+a {
+    text-decoration: none;
+}
+   
+/* ============================================
+   네비게이션 바 스타일
+   ============================================ */
+#navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: #343a40;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 8px 0;
+}
+   
+#navbar h1 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #fff;
+    padding: 0;
+    margin: 0;
+    line-height: 1.2;
+}
+
+#navbar h1 a {
+    display: block;
+    padding: 8px 0;
+    color: #fff;
+    transition: color 0.2s ease;
+}
+
+#navbar h1 a:hover {
+    color: #f8f9fa;
+    text-decoration: none;
+}
+   
+/* ============================================
+   커스텀 네비게이션 바
+   ============================================ */
+.custom-navbar {
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+
+/* Bootstrap navbar 스타일 */
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-nav .nav-item {
+    position: relative;
+}
+
+.navbar-nav .nav-link {
+    display: block;
+    padding: 8px 16px;
+    color: #fff !important;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f8f9fa !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   드롭다운 메뉴 스타일
+   ============================================ */
+.dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0.375rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+/* 우측 정렬 드롭다운 */
+.dropdown-menu-end {
+    left: auto !important;
+    right: 0 !important;
+}
+
+/* Bootstrap Popper.js 스타일 무력화 */
+.dropdown-menu[data-bs-popper] {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+}
+
+.dropdown-menu[data-bs-popper].dropdown-menu-end {
+    left: auto !important;
+    right: 0 !important;
+}
+
+/* 드롭다운 아이템 */
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 8px 16px;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.dropdown-item:hover {
+    color: #1e2125;
+    background-color: #e9ecef;
+}
+
+/* 중첩 드롭다운 (dropend) */
+.dropend .dropdown-menu {
+    top: 0 !important;
+    left: 100% !important;
+    margin-left: 2px !important;
+}
+
+/* 드롭다운 구분선 */
+.dropdown-divider {
+    height: 0;
+    margin: 4px 0;
+    overflow: hidden;
+    border-top: 1px solid rgba(0,0,0,.15);
+}
+
+/* ============================================
+   아코디언 메뉴 스타일 (오프캔버스용)
+   ============================================ */
+#site-menu .accordion {
+    --bs-accordion-bg: transparent;
+    --bs-accordion-border-width: 0;
+    --bs-accordion-btn-padding-x: 1.25rem;
+    --bs-accordion-btn-padding-y: 0.75rem;
+    --bs-accordion-body-padding-x: 0;
+    --bs-accordion-body-padding-y: 0.5rem;
+}
+
+#site-menu .accordion-button {
+    font-weight: 500;
+    padding: var(--bs-accordion-btn-padding-y) var(--bs-accordion-btn-padding-x);
+    border-radius: 0;
+    box-shadow: none;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#site-menu .accordion-button:not(.collapsed) {
+    color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+#site-menu .accordion-button:focus {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+#site-menu .accordion-button::after {
+    display: none;
+}
+
+#site-menu .accordion-button .accordion-arrow {
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+}
+
+#site-menu .accordion-item {
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+#site-menu .accordion-body {
+    padding: 0;
+}
+
+#site-menu .list-group-item {
+    border: none;
+    border-radius: 0 !important;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+}
+
+#site-menu .list-group-item-action {
+    color: #495057;
+}
+
+#site-menu .list-group-item-action:hover {
+    color: #0d6efd;
+    background-color: #f8f9fa;
+}
+
+/* 동적 패딩 적용 */
+#site-menu .accordion .accordion-button {
+    padding-left: calc(var(--bs-accordion-btn-padding-x) + 10px);
+}
+
+#site-menu .accordion .accordion .accordion-button {
+    padding-left: calc(var(--bs-accordion-btn-padding-x) + 20px);
+}
+
+#site-menu .accordion .list-group-item {
+    padding-left: calc(1.25rem + 10px);
+}
+
+#site-menu .accordion .accordion .list-group-item {
+    padding-left: calc(1.25rem + 20px);
+}
+
+/* 오프캔버스 내부 스크롤 */
+.offcanvas-body {
+    overflow-y: auto; 
+}
+
+/* SNS 아이콘 스타일 */
+.sns-icons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.sns-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff;
+    color: #333333;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.sns-icon i {
+    font-size: 16px;
+}
+
+.sns-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* SNS별 색상 */
+.sns-icon.facebook { color: #3b5998; }
+.sns-icon.facebook:hover { background-color: #3b5998; color: white; }
+
+.sns-icon.x-twitter { color: #000000; }
+.sns-icon.x-twitter:hover { background-color: #000000; color: white; }
+
+.sns-icon.kakaotalk { color: #3c1e1e; }
+.sns-icon.kakaotalk:hover { background-color: #FFE812; color: #3c1e1e; }
+
+.sns-icon.naver-blog { color: #03cf5d; }
+.sns-icon.naver-blog:hover { background-color: #03cf5d; color: white; }
+
+.sns-icon.line { color: #00c300; }
+.sns-icon.line:hover { background-color: #00c300; color: white; }
+
+.sns-icon.pinterest { color: #e60023; }
+.sns-icon.pinterest:hover { background-color: #e60023; color: white; }
+
+.sns-icon.linkedin { color: #0077b5; }
+.sns-icon.linkedin:hover { background-color: #0077b5; color: white; }
+
+.copyright {font-size: 0.8rem;}

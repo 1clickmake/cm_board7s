@@ -1,0 +1,17 @@
+/* ============================================
+   기본 템플릿 스타일
+   ============================================ */
+@charset "utf-8";
+
+/* 기본 바디 스타일 */
+body {
+    padding-top: 40px; /* 네비게이션 바 높이만큼 상단 여백 추가 */
+    min-height: 100vh;
+    position: relative;
+    background-color: #fff;
+}
+
+/* 기본 링크 스타일 */
+a {
+    text-decoration: none;
+}

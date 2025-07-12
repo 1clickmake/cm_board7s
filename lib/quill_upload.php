@@ -1,0 +1,35 @@
+<?php
+include_once './_common.php'; 
+
+// JSON 응답 헤더 설정
+header('Content-Type: application/json');
+
+try {
+    // 1. 게시판 정보 확인
+    $board_id = filter_input(INPUT_POST, 'board_id', FILTER_SANITIZE_SPECIAL_CHARS);
+    if (empty($board_id)) {
+        throw new Exception('게시판 정보가 없습니다.');
+    }
+
+    // 2. 파일 업로드 확인
+    if (empty($_FILES['image'])) {
+        throw new Exception('업로드된 파일이 없습니다.');
+    }
+
+    // 3. process_editor_image_upload 함수로 이미지 업로드 처리
+    $imageUrl = process_editor_image_upload($_FILES['image'], $board_id);
+    
+    if (!$imageUrl) {
+        throw new Exception('이미지 업로드 처리 중 오류가 발생했습니다.');
+    }
+
+    // 4. 성공 응답
+    echo json_encode([
+        'url' => $imageUrl,
+        'name' => basename($imageUrl)
+    ]);
+
+} catch (Exception $e) {
+    // 오류 발생시 에러 응답
+    die(json_encode(['error' => $e->getMessage()]));
+}
